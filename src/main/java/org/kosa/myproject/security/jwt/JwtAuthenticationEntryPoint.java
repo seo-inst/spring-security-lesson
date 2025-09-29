@@ -17,7 +17,9 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 /**
-
+    JWT 인증 실패 시 처리하는 EntryPoint
+ AuthenticationEntryPoint는 인증되지 않은 사용자가 시큐리티로 보호된
+ 자원에 접근할 때 실행됩니다
  */
 @Slf4j
 @Component
@@ -33,7 +35,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
                         AuthenticationException authException) throws IOException, ServletException {
         
         // 로그를 통해 어떤 인증 실패인지 확인
-        log.error("인증 실패: {}", authException.getMessage());
+        log.error("인증 실패 seo: {}", authException.getMessage());
         
         // JWT 관련 예외 메시지를 구체적으로 처리
         String errorMessage = getErrorMessage(request, authException);

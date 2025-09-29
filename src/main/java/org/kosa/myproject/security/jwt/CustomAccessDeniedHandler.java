@@ -17,7 +17,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 /**
-
+    권한 부족시 처리하는 Handler
+ AccessDeniedHandler 는 인증은 되었지만 해당 리소스에 대한 권한이 없을 때 실행됨
  */
 @Slf4j
 @Component
@@ -33,7 +34,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
                       AccessDeniedException accessDeniedException) throws IOException, ServletException {
         
         // 권한 부족 로그
-        log.error("권한 부족: {} - {}", 
+        log.error("권한 부족 seo: {} - {}",
             request.getRequestURI(), 
             accessDeniedException.getMessage());
         
