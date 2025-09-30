@@ -67,7 +67,28 @@ public class PostController {
         // ApiResponseDto 의 표준화된 형식으로 응답한다
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponseDto.success(postDetailResponseDto, "게시글이 작성되었습니다"));
     }
+    /**
+     *  게시글 상세조회
+     *  JWT 토큰 인증 필요 ( 로그인한 사용자만 작성 가능 )
+     *  GET  http://localhost:8080/api/posts/1
+     *
+     * @param id  조회할 게시글 ID
+     * @return  게시글 상세 정보
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getPostById(@PathVariable Long id){
+        PostDetailResponseDto post = postService.getPostById(id);
+        log.info("게시글 조회 성공 : title={}",post.getTitle());
+        return ResponseEntity.ok(ApiResponseDto.success(post,"게시글 조회 성공"));
+    }
 }
+
+
+
+
+
+
+
 
 
 
